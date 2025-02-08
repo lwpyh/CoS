@@ -130,8 +130,8 @@
           <center>
           	<!-- <span style="font-size:34px">CoS: Chain-of-Shot Prompting for </span><br> -->
           	<!-- <span style="font-size:34px">Long Video Understanding</span> -->
-          	<span style="font-size:34px">Leveraging Hallucinations to Reduce Manual Prompt</span><br>
-          	<span style="font-size:34px">Dependency in Promptable Segmentation</span><br>
+          	<span style="font-size:34px">CoS: Chain-of-Shot Prompting for</span><br>
+          	<span style="font-size:34px">Long Video Understanding</span><br>
 		  <br>
 	  		  <table align=center width=700px>
 	  			  <tr>
@@ -191,7 +191,7 @@
   			  <tr>
   	              <td width=400px>
   					<center>
-  	                	<img class="rounded" src = "frame_CoS.png" height="190px"></img>
+  	                	<img class="rounded" src = "motivation_shown.png" height="220px"></img>
   	                	<br>
 					</center>
   	              </td>
@@ -207,7 +207,7 @@
  <center><h1>Abstract</h1></center>
 	<div align="justify">
 	<p>
-Multi-modal Large Language Models (MLLMs) struggle with long videos due to the need for excessive visual tokens. These tokens exceed massively the context length of MLLMs, resulting in filled by redundant task-irrelevant shots. How to select shots is an unsolved critical problem: sparse sampling risks missing key details, while exhaustive sampling overwhelms the model with irrelevant content, leading to video misunderstanding. To solve this problem, we propose \textbf{C}hain-\textbf{o}f-\textbf{S}hot prompting (\textbf{CoS}). The key idea is to frame shot selection as test-time visual prompt optimisation, choosing shots adaptive to video understanding semantic task by optimising shots-task alignment. CoS has two key parts: (1) a binary video summary mechanism that performs pseudo temporal grounding, discovering a binary coding to identify task-relevant shots, and (2) a video co-reasoning module that deploys the binary coding to pair (learning to align) task-relevant positive shots with irrelevant negative shots. It embeds the optimised shot selections into the original video, facilitating a focus on relevant context to optimize long video understanding. Experiments across three baselines and five datasets demonstrate the effectiveness and adaptability of CoS.</p>
+Multi-modal Large Language Models (MLLMs) struggle with long videos due to the need for excessive visual tokens. These tokens exceed massively the context length of MLLMs, resulting in filled by redundant task-irrelevant shots. How to select shots is an unsolved critical problem: sparse sampling risks missing key details, while exhaustive sampling overwhelms the model with irrelevant content, leading to video misunderstanding. To solve this problem, we propose \textbf{C}hain-\textbf{o}f-\textbf{S}hot prompting (\textbf{CoS}). The key idea is to frame shot selection as test-time visual prompt optimisation, choosing shots adaptive to video understanding semantic task by optimising shots-task alignment. CoS has two key parts: (1) a binary video summary mechanism that performs pseudo temporal grounding, discovering a binary coding to identify task-relevant shots, and (2) a video co-reasoning module that deploys the binary coding to pair (learning to align) task-relevant positive shots with irrelevant negative shots. It embeds the optimised shot selections into the original video, facilitating a focus on relevant context to optimize long video understanding. Experiments across three baselines and five datasets demonstrate the effectiveness of CoS.</p>
 		</div>
 <br>
 <hr>
@@ -224,9 +224,23 @@ Multi-modal Large Language Models (MLLMs) struggle with long videos due to the n
         <td width="400px">
             <center>
                 <figure>
-                    <img class="rounded" src="framework_ProMaC_v10.png" height="320px" />
+                    <img class="rounded" src="frame_CoS.png" height="320px" />
                     <figcaption style="text-align: justify;">
-    ProMaC consists of a prompt generator and a mask generator for cyclical optimization. The prompt generator employs multi-scale chain-of-thought prompting. It initially uses hallucinations for exploring task-related information within image patches. It identifies task-relevant objects and their backgrounds (A<sup>k</sup><sub>fore</sub>, A<sup>k</sup><sub>back</sub>) along with their locations (B<sup>k</sup>). Subsequently, it uses visual contrastive reasoning to refine and finalize instance-specific prompts (A<sup>u</sup><sub>i</sub>, B<sup>u</sup><sub>i</sub>) by eliminating hallucinations.. The mask generator then processes these prompts into the segmentation model ("Seg"), producing a mask aligned with task semantics. This mask further guides the visual contrastive reasoning process, which leverages an inpainting model to eliminate masked regions, creating contrastive images. These images enable the prompt generator to further refine its prompts, enhancing segmentation accuracy.
+    The overall framework of CoS. It first utilises LLaVA to
+     perform a mosaicing binary coding to bootstrap video
+     summarisation for temporal grounding on a long video. Specifically, every
+     four shots are aggregated into a mosaicing composition image. LLaVA
+     determines whether task-related elements exist within each
+     composition image by encoding a binary value of 1 or 0 (`yes'
+     or `no'),
+     thereby identifying sparsely distributed task-related shots to
+     achieve pseudo temporal grounding. Given this binary video
+     summary, task-related positive shots  
+$S^p$ and irrelevant negative shots 
+$S^n$ are generated and represented by binary codes. 
+$S^p$, $S^n$ and the original frame sequence $X$ sampled from  
+original video $V$ are then fed into the MLLM for co-reasoning, minimising
+     interference of irrelevant video content.
 </figcaption>
                 </figure>
         <td width="400px">
@@ -256,7 +270,7 @@ Multi-modal Large Language Models (MLLMs) struggle with long videos due to the n
         <td width="400px">
             <center>
                 <figure>
-		    <img class="rounded" src="experiment_2.png" height="320px" />
+		    <img class="rounded" src="videomme.png" height="320px" />
                 </figure>
         <td width="400px">
         </td>
@@ -270,7 +284,7 @@ Multi-modal Large Language Models (MLLMs) struggle with long videos due to the n
   			  <tr>
   	              <td width=400px>
   					<center>
-  	                	<img class="rounded" src = "visulization_n.png" height="500px"></img>
+  	                	<img class="rounded" src = "image_sample.png" height="500px"></img>
   	                	<br>
 					</center>
   	              </td>
