@@ -119,7 +119,7 @@
 
 <html>
   <head>
-		<title>Leveraging Hallucinations to Reduce Manual Prompt Dependency in Promptable Segmentation</title>
+		<title>CoS: Chain-of-Shot Prompting for Long Video Understanding</title>
 		<meta property="og:image" content="https://richzhang.github.io/splitbrainauto/index_files/cvpr_fb_icon.png"/>
 		<meta property="og:title" content=". In NeurlPS, 2024." />
   </head>
@@ -128,8 +128,8 @@
 <body>
     <br>
           <center>
-          	<!-- <span style="font-size:34px">Leveraging Hallucinations to Reduce Manual Prompt</span><br> -->
-          	<!-- <span style="font-size:34px">Dependency in Promptable Segmentation</span> -->
+          	<!-- <span style="font-size:34px">CoS: Chain-of-Shot Prompting for </span><br> -->
+          	<!-- <span style="font-size:34px">Long Video Understanding</span> -->
           	<span style="font-size:34px">Leveraging Hallucinations to Reduce Manual Prompt</span><br>
           	<span style="font-size:34px">Dependency in Promptable Segmentation</span><br>
 		  <br>
@@ -143,13 +143,19 @@
 		  		  	  </td>
 	  	              <td align=center width=110px>
 	  					<center>
-	  						<span style="font-size:20px"><a href="https://jylin8100.github.io/">Jiayi Lin</a></span>
+	  						<span style="font-size:20px"><a href="https://zxccade.github.io/">Zixu cheng</a></span>
 							</a><sup>1</sup></span>
 		  		  		</center>
 		  		  	  </td>
 	  	              <td align=center width=130px>
 	  					<center>
-	  						<span style="font-size:20px"><a href="https://thinklab.sjtu.edu.cn/">Junchi Yan</a></span>
+	  						<span style="font-size:20px"><a href="https://chenyangsi.top/">Siyang Cheng</a></span>
+							</a><sup>2</sup></span>
+		  		  		</center>
+		  		  	  </td>
+				<td align=center width=130px>
+	  					<center>
+	  						<span style="font-size:20px"><a href="https://weivision.github.io/">Wei Li</a></span>
 							</a><sup>2</sup></span>
 		  		  		</center>
 		  		  	  </td>
@@ -160,8 +166,8 @@
 		  		  		</center>
 		  		  	  </td>
 			  </table>
-          	<span style="font-size:20px"><sup>1</sup>Queen Mary University of London, <sup>2</sup>Shanghai Jiao Tong University</span><br>
-		  <span style="font-size:20px">{jian.hu, jiayi.lin, s.gong}@qmul.ac.uk, yanjunchi@sjtu.edu.cn</span>
+          	<span style="font-size:20px"><sup>1</sup>CV Lab, Queen Mary University of London, <sup>2</sup>S-Lab, Nanyang Technological University</span><br>
+		  <span style="font-size:20px">{jian.hu, zixu.cheng, s.gong}@qmul.ac.uk, {chenyang.si, wei.l}@ntu.edu.sg</span>
           	<!-- <span style="font-size:22px">In CVPR, 2017.</span><br> -->
           		<!-- <span style="font-size:30px">ECCV 2016.</span> -->
 
@@ -169,12 +175,12 @@
 	  			  <tr>
 	  	              <td align=center width=300px>
 	  					<center>
-	  						<span style="font-size:20px"><a href='https://github.com/lwpyh/ProMaC_code'> Code [GitHub]</a></span>
+	  						<span style="font-size:20px"><a href='https://github.com/lwpyh/CoS_code'> Code [GitHub]</a></span>
 		  		  		</center>
 		  		  	  </td>
 	  	              <td align=center width=300px>
 	  					<center>
-	  						<span style="font-size:20px"><a href='https://arxiv.org/abs/2408.15205'> NeurIPS 2024 [Paper]</a></span>
+	  						<span style="font-size:20px"><a href='https://arxiv.org/abs/'> ArXiV [Paper]</a></span>
 		  		  		</center>
 		  		  	  </td>
 			  </table>
@@ -185,7 +191,7 @@
   			  <tr>
   	              <td width=400px>
   					<center>
-  	                	<img class="rounded" src = "naive_framework4.png" height="190px"></img>
+  	                	<img class="rounded" src = "frame_CoS.png" height="190px"></img>
   	                	<br>
 					</center>
   	              </td>
@@ -201,10 +207,7 @@
  <center><h1>Abstract</h1></center>
 	<div align="justify">
 	<p>
-Promptable segmentation typically requires instance-specific manual prompts to guide the segmentation of each desired object.To minimize such a need, task-generic promptable segmentation has been introduced, which employs a single task-generic prompt to segment various images of different objects in the same task.Current methods use Multimodal Large Language Models (MLLMs) to reason detailed instance-specific prompts from a task-generic prompt for improving segmentation accuracy. The effectiveness of this segmentation heavily depends on the precision of these derived prompts. However, MLLMs often suffer hallucinations during reasoning, resulting in inaccurate prompting. While existing methods focus on eliminating hallucinations to improve a model, we argue that MLLM hallucinations can reveal valuable contextual insights when leveraged correctly, as they represent pre-trained large-scale knowledge beyond individual images.
-In this paper, we utilize hallucinations to mine task-related information from images and verify its accuracy for enhancing precision of the generated prompts.  Specifically, we introduce an iterative <strong>Pro</strong>mpt-<strong>Ma</strong>sk <strong>C</strong>ycle generation framework (<strong>ProMaC</strong>) with a prompt generator and a mask generator. The prompt generator uses a multi-scale chain of thought prompting, initially exploring hallucinations for extracting extended contextual knowledge on a test image. These hallucinations are then reduced to formulate precise instance-specific prompts, directing the mask generator to produce masks consistenting with task semantics by mask semantic alignment.
-The generated masks iteratively induce the prompt generator to focus more on task-relevant image areas and reduce irrelevant hallucinations, resulting jointly in better prompts and masks.
-Experiments on 5 benchmarks demonstrate the effectiveness of ProMaC.</p>
+Multi-modal Large Language Models (MLLMs) struggle with long videos due to the need for excessive visual tokens. These tokens exceed massively the context length of MLLMs, resulting in filled by redundant task-irrelevant shots. How to select shots is an unsolved critical problem: sparse sampling risks missing key details, while exhaustive sampling overwhelms the model with irrelevant content, leading to video misunderstanding. To solve this problem, we propose \textbf{C}hain-\textbf{o}f-\textbf{S}hot prompting (\textbf{CoS}). The key idea is to frame shot selection as test-time visual prompt optimisation, choosing shots adaptive to video understanding semantic task by optimising shots-task alignment. CoS has two key parts: (1) a binary video summary mechanism that performs pseudo temporal grounding, discovering a binary coding to identify task-relevant shots, and (2) a video co-reasoning module that deploys the binary coding to pair (learning to align) task-relevant positive shots with irrelevant negative shots. It embeds the optimised shot selections into the original video, facilitating a focus on relevant context to optimize long video understanding. Experiments across three baselines and five datasets demonstrate the effectiveness and adaptability of CoS.</p>
 		</div>
 <br>
 <hr>
