@@ -1,0 +1,314 @@
+<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-weight:300;
+		font-size:18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1000px;
+	}	
+	h1 {
+		font-weight:300;
+	}
+	
+	.disclaimerbox {
+		background-color: #eee;		
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.rounded {
+		border: 0px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+	
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+	
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		        15px 15px 0 0px #fff, /* The fourth layer */
+		        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		        20px 20px 0 0px #fff, /* The fifth layer */
+		        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		        25px 25px 0 0px #fff, /* The fifth layer */
+		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+	
+	.vert-cent {
+		position: relative;
+	    top: 50%;
+	    transform: translateY(-50%);
+	}
+	
+	hr
+	{
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+</style>
+
+<html>
+  <head>
+		<title>Leveraging Hallucinations to Reduce Manual Prompt Dependency in Promptable Segmentation</title>
+		<meta property="og:image" content="https://richzhang.github.io/splitbrainauto/index_files/cvpr_fb_icon.png"/>
+		<meta property="og:title" content=". In NeurlPS, 2024." />
+  </head>
+
+	
+<body>
+    <br>
+          <center>
+          	<!-- <span style="font-size:34px">Leveraging Hallucinations to Reduce Manual Prompt</span><br> -->
+          	<!-- <span style="font-size:34px">Dependency in Promptable Segmentation</span> -->
+          	<span style="font-size:34px">Leveraging Hallucinations to Reduce Manual Prompt</span><br>
+          	<span style="font-size:34px">Dependency in Promptable Segmentation</span><br>
+		  <br>
+	  		  <table align=center width=700px>
+	  			  <tr>
+	  	              <td align=center width=100px>
+	  					<center>
+	  						<span style="font-size:20px"><a href="https://lwpyh.github.io/">Jian Hu</a></span>
+							</a><sup>1</sup></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=110px>
+	  					<center>
+	  						<span style="font-size:20px"><a href="https://jylin8100.github.io/">Jiayi Lin</a></span>
+							</a><sup>1</sup></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=130px>
+	  					<center>
+	  						<span style="font-size:20px"><a href="https://thinklab.sjtu.edu.cn/">Junchi Yan</a></span>
+							</a><sup>2</sup></span>
+		  		  		</center>
+		  		  	  </td>
+				<td align=center width=110px>
+	  					<center>
+	  						<span style="font-size:20px"><a href="https://www.eecs.qmul.ac.uk/~sgg/">Shaogang Gong</a></span>
+							</a><sup>1</sup></span>
+		  		  		</center>
+		  		  	  </td>
+			  </table>
+          	<span style="font-size:20px"><sup>1</sup>Queen Mary University of London, <sup>2</sup>Shanghai Jiao Tong University</span><br>
+		  <span style="font-size:20px">{jian.hu, jiayi.lin, s.gong}@qmul.ac.uk, yanjunchi@sjtu.edu.cn</span>
+          	<!-- <span style="font-size:22px">In CVPR, 2017.</span><br> -->
+          		<!-- <span style="font-size:30px">ECCV 2016.</span> -->
+
+	  		  <table align=center width=400px>
+	  			  <tr>
+	  	              <td align=center width=300px>
+	  					<center>
+	  						<span style="font-size:20px"><a href='https://github.com/lwpyh/ProMaC_code'> Code [GitHub]</a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=300px>
+	  					<center>
+	  						<span style="font-size:20px"><a href='https://arxiv.org/abs/2408.15205'> NeurIPS 2024 [Paper]</a></span>
+		  		  		</center>
+		  		  	  </td>
+			  </table>
+          </center>
+  		  <br>
+
+	<table align=center width=800px>
+  			  <tr>
+  	              <td width=400px>
+  					<center>
+  	                	<img class="rounded" src = "naive_framework4.png" height="190px"></img>
+  	                	<br>
+					</center>
+  	              </td>
+                </tr>
+  	              <td width=400px>
+  					</center>
+  	              </td>
+  		  </table>
+
+  		  <br>
+            	  <hr>
+<table align=center width=900px>
+ <center><h1>Abstract</h1></center>
+	<div align="justify">
+	<p>
+Promptable segmentation typically requires instance-specific manual prompts to guide the segmentation of each desired object.To minimize such a need, task-generic promptable segmentation has been introduced, which employs a single task-generic prompt to segment various images of different objects in the same task.Current methods use Multimodal Large Language Models (MLLMs) to reason detailed instance-specific prompts from a task-generic prompt for improving segmentation accuracy. The effectiveness of this segmentation heavily depends on the precision of these derived prompts. However, MLLMs often suffer hallucinations during reasoning, resulting in inaccurate prompting. While existing methods focus on eliminating hallucinations to improve a model, we argue that MLLM hallucinations can reveal valuable contextual insights when leveraged correctly, as they represent pre-trained large-scale knowledge beyond individual images.
+In this paper, we utilize hallucinations to mine task-related information from images and verify its accuracy for enhancing precision of the generated prompts.  Specifically, we introduce an iterative <strong>Pro</strong>mpt-<strong>Ma</strong>sk <strong>C</strong>ycle generation framework (<strong>ProMaC</strong>) with a prompt generator and a mask generator. The prompt generator uses a multi-scale chain of thought prompting, initially exploring hallucinations for extracting extended contextual knowledge on a test image. These hallucinations are then reduced to formulate precise instance-specific prompts, directing the mask generator to produce masks consistenting with task semantics by mask semantic alignment.
+The generated masks iteratively induce the prompt generator to focus more on task-relevant image areas and reduce irrelevant hallucinations, resulting jointly in better prompts and masks.
+Experiments on 5 benchmarks demonstrate the effectiveness of ProMaC.</p>
+		</div>
+<br>
+<hr>
+<!-- <hr> -->
+<!-- <center><h1>Video</h1></center> -->
+     <!-- <center>
+     <iframe width="560" height="315" src="https://www.youtube.com/embed/oMcd6maQgQk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+     </center> -->
+<!-- <br> -->
+
+<center><h1>Framework</h1></center>
+<table align="center" width="800px">
+    <tr>
+        <td width="400px">
+            <center>
+                <figure>
+                    <img class="rounded" src="framework_ProMaC_v10.png" height="320px" />
+                    <figcaption style="text-align: justify;">
+    ProMaC consists of a prompt generator and a mask generator for cyclical optimization. The prompt generator employs multi-scale chain-of-thought prompting. It initially uses hallucinations for exploring task-related information within image patches. It identifies task-relevant objects and their backgrounds (A<sup>k</sup><sub>fore</sub>, A<sup>k</sup><sub>back</sub>) along with their locations (B<sup>k</sup>). Subsequently, it uses visual contrastive reasoning to refine and finalize instance-specific prompts (A<sup>u</sup><sub>i</sub>, B<sup>u</sup><sub>i</sub>) by eliminating hallucinations.. The mask generator then processes these prompts into the segmentation model ("Seg"), producing a mask aligned with task semantics. This mask further guides the visual contrastive reasoning process, which leverages an inpainting model to eliminate masked regions, creating contrastive images. These images enable the prompt generator to further refine its prompts, enhancing segmentation accuracy.
+</figcaption>
+                </figure>
+        <td width="400px">
+        </td>
+    </tr>
+</table>
+<hr>
+<table align="center" width="1700px">
+
+<center><h1>Experiments</h1></center>
+<table align="center" width="800px style="margin-bottom: -10px;">
+    <tr>
+        <td width="400px">
+            <center>
+                <figure>
+			<figcaption style="text-align: justify;">
+				
+    </figcaption>
+		    <img class="rounded" src="experiment_n.png" height="590px" />
+                </figure>
+        <td width="400px">
+        </td>
+    </tr>
+</table>
+<table align="center" width="800px style="margin-top: -5px;"">
+    <tr>
+        <td width="400px">
+            <center>
+                <figure>
+		    <img class="rounded" src="experiment_2.png" height="320px" />
+                </figure>
+        <td width="400px">
+        </td>
+    </tr>
+</table>
+  <hr>
+<table align="center" width="2800px">
+
+<center><h1>Visulization</h1></center>
+	<table align=center width=800px>
+  			  <tr>
+  	              <td width=400px>
+  					<center>
+  	                	<img class="rounded" src = "visulization_n.png" height="500px"></img>
+  	                	<br>
+					</center>
+  	              </td>
+                </tr>
+  	              <td width=400px>
+  					</center>
+  	              </td>
+  		  </table>
+
+  		  <br>
+            	  <hr>
+<table align=center width=1900px>
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{hu2024leveraging,
+  title={Leveraging Hallucinations to Reduce Manual Prompt Dependency in Promptable Segmentation},
+  author={Hu, Jian and Lin, Jiayi and Yan, Junchi and Gong, Shaogang},
+  journal={arXiv preprint arXiv:2408.15205},
+  year={2024}
+}</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+           
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+	
+</body>
+</html>
