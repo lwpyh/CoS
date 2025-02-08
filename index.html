@@ -128,10 +128,8 @@
 <body>
     <br>
           <center>
-          	<!-- <span style="font-size:34px">CoS: Chain-of-Shot Prompting for </span><br> -->
-          	<!-- <span style="font-size:34px">Long Video Understanding</span> -->
-          	<span style="font-size:34px">CoS: Chain-of-Shot Prompting for</span><br>
-          	<span style="font-size:34px">Long Video Understanding</span><br>
+          	<!-- <span style="font-size:34px">CoS: Chain-of-Shot Prompting for Long Video Understanding</span> -->
+          	<span style="font-size:34px">CoS: Chain-of-Shot Prompting for Long Video Understanding</span><br>
 		  <br>
 	  		  <table align=center width=700px>
 	  			  <tr>
@@ -147,13 +145,13 @@
 							</a><sup>1</sup></span>
 		  		  		</center>
 		  		  	  </td>
-	  	              <td align=center width=130px>
+	  	              <td align=center width=110px>
 	  					<center>
 	  						<span style="font-size:20px"><a href="https://chenyangsi.top/">Siyang Cheng</a></span>
 							</a><sup>2</sup></span>
 		  		  		</center>
 		  		  	  </td>
-				<td align=center width=130px>
+				<td align=center width=110px>
 	  					<center>
 	  						<span style="font-size:20px"><a href="https://weivision.github.io/">Wei Li</a></span>
 							</a><sup>2</sup></span>
@@ -191,7 +189,7 @@
   			  <tr>
   	              <td width=400px>
   					<center>
-  	                	<img class="rounded" src = "motivation_shown.png" height="220px"></img>
+  	                	<img class="rounded" src = "motivation_show.png" height="220px"></img>
   	                	<br>
 					</center>
   	              </td>
@@ -224,23 +222,21 @@ Multi-modal Large Language Models (MLLMs) struggle with long videos due to the n
         <td width="400px">
             <center>
                 <figure>
-                    <img class="rounded" src="frame_CoS.png" height="320px" />
+                    <img class="rounded" src="frame_CoS.png" height="180px" />
                     <figcaption style="text-align: justify;">
-    The overall framework of CoS. It first utilises LLaVA to
-     perform a mosaicing binary coding to bootstrap video
-     summarisation for temporal grounding on a long video. Specifically, every
-     four shots are aggregated into a mosaicing composition image. LLaVA
-     determines whether task-related elements exist within each
-     composition image by encoding a binary value of 1 or 0 (`yes'
-     or `no'),
-     thereby identifying sparsely distributed task-related shots to
-     achieve pseudo temporal grounding. Given this binary video
-     summary, task-related positive shots  
-$S^p$ and irrelevant negative shots 
-$S^n$ are generated and represented by binary codes. 
-$S^p$, $S^n$ and the original frame sequence $X$ sampled from  
-original video $V$ are then fed into the MLLM for co-reasoning, minimising
-     interference of irrelevant video content.
+                            The overall framework of CoS. It first utilises LLaVA to
+                            perform a mosaicing binary coding to bootstrap video
+                            summarisation for temporal grounding on a long video. Specifically, every
+                            four shots are aggregated into a mosaicing composition image. LLaVA
+                            determines whether task-related elements exist within each
+                            composition image by encoding a binary value of 1 or 0 (<code>'yes'</code>
+                            or <code>'no'</code>),
+                            thereby identifying sparsely distributed task-related shots to
+                            achieve pseudo temporal grounding. Given this binary video
+                            summary, task-related positive shots  \( S^p \) and irrelevant negative shots \( S^n \)
+                            are generated and represented by binary codes. \( S^p \), \( S^n \) and the original frame sequence \( X \)
+                            sampled from original video \( V \) are then fed into the MLLM for co-reasoning,
+                            minimising interference of irrelevant video content.
 </figcaption>
                 </figure>
         <td width="400px">
@@ -259,18 +255,7 @@ original video $V$ are then fed into the MLLM for co-reasoning, minimising
 			<figcaption style="text-align: justify;">
 				
     </figcaption>
-		    <img class="rounded" src="experiment_n.png" height="590px" />
-                </figure>
-        <td width="400px">
-        </td>
-    </tr>
-</table>
-<table align="center" width="800px style="margin-top: -5px;"">
-    <tr>
-        <td width="400px">
-            <center>
-                <figure>
-		    <img class="rounded" src="videomme.png" height="320px" />
+		    <img class="rounded" src="videomme.png" height="590px" />
                 </figure>
         <td width="400px">
         </td>
